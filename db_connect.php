@@ -14,7 +14,7 @@ $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
 if ( !$conn ) {
  die("Connection failed : " . mysqli_error());
 } else {
-	echo "Works!";
+	//echo "Works!";
 }
 
 

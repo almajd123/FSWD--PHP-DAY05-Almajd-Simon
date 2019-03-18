@@ -1,4 +1,64 @@
 <!-- // DB Connection -->
+<?php 
+ob_start();
+session_start();
+       // Connection Data
+       $servername = "localhost";
+       $username   = "root";
+       $password   = "moony#1423"; 
+       $dbname     = "admin_panel_exercise";
+// Create connection
+       $conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check connection
+       if (!$conn) {
+         die("Connection failed: " . mysqli_connect_error() . "\n");
+       } else {
+                // echo "Works!";
+       }
+// Query SELECT Media_ID, Name, ISBN, Image, Descr, Publish_Date FROM media
+
+// Delete Function
+   
+
+
+/*
+    if(isset($_GET['id'])) {
+     $id = $_GET['id'];
+     $sql = "SELECT * FROM media WHERE Media_ID = $id";
+     $result = mysqli_query($conn, $sql);
+
+     $row = mysqli_fetch_assoc($result);
+     // echo "bookname :" . $row["bookname"];
+   };
+*/
+   // $connect->close();
+
+
+/*
+   if (isset($_POST["submit3"])){
+    $id= $_POST["id"];
+    $name = mysqli_real_escape_string($conn, $_POST['newname']);
+    $sql = "UPDATE `media` SET bookname = '$bookname' WHERE Media_ID = $id"; 
+    if (mysqli_query($conn, $sql)) {
+     echo "<h1>record updated.<h1>";
+   } else {
+     echo "<h1>Update error for: </h1>" . 
+     "<p>" . $sql . "</p>" . mysqli_error($conn);
+   } 
+ };
+//Edit End
+*/
+   // $connect->close();
+
+//Logged In
+ if( !isset($_SESSION['user']) ) {
+ header("Location: admin_panel.php");
+ exit;
+}
+// select logged-in users details
+$res=mysqli_query($conn, "SELECT * FROM user WHERE user_ID=".$_SESSION['user']);
+$userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+?>
 
 
 <!DOCTYPE html>
@@ -20,11 +80,11 @@
 <div class="container-fluid">
   
 
-  <header id="header" class=""> 
+  <header class="header" class=""> 
     <h1>Admin Panel</h1>
     <nav>
       <ul id="ulflex">
-        <li>Hello <?php echo $userRow['userName']; ?></li>
+        <li>Your logged in as: <?php echo $userRow['userName']; ?></li>
         <li><a href="logout.php?logout">Sign Out</a></li>
       </ul>
     </nav>
@@ -75,7 +135,7 @@
           ?>
           <div class="col-sm-10">     
             <select name="itemstatus">     
-             <option value="1">Availables</option>
+             <option value="1">Available</option>
              <option value="2">Not Available</option>
            </select>
          </div>
@@ -146,8 +206,8 @@
         <td>".$val["itemName"]."</td>
         <td>".$val["itemDate"]."</td>
         <td><img class='images' src=".$val["itemImage"]."></td>
-        <td>".$val["statusName"]."</td>
         <td>".$val["typeName"]."</td>
+        <td>".$val["statusName"]."</td>
         <td><a class='btn btn-danger' href='admin_panel.php?id=".$val["item_ID"]."'>Edit</a></td>
         <td><a class='btn btn-danger' href='admin_panel.php?id=".$val["item_ID"]."'>Delete</a></td>
         </tr>";
@@ -173,22 +233,7 @@
          mysqli_close($conn);
        }
 
-// Insert Address Into Database!
-      /* if (isset($_POST["submit2"])) {
-        $address = mysqli_real_escape_string($conn, $_POST['street']);
-        $zip = mysqli_real_escape_string($conn, $_POST['zipcode']);
-        $city = mysqli_real_escape_string($conn, $_POST['city']);
-        $country = mysqli_real_escape_string($conn, $_POST['country']);
-        $sql = "INSERT INTO address (`Address_ID`, `Street`, `ZIP-Code`, `City`, `Country`) VALUES (NULL, '$address', '$zip', '$city', '$country')";
-        if (mysqli_query($conn, $sql)) {
-         echo "<h1>New record created.</h1>";
-       } else {
-         echo "<h1>Record creation error for: </h1>" . 
-         "<p>" . $sql . "</p>" . 
-         mysqli_error($conn);
-       }
-       mysqli_close($conn);
-     } */
+
 // Delete Function
      if(isset($_GET["id"])){
       $id= $_GET["id"];
@@ -237,7 +282,6 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 ?>
 
 
- ?>
 </tbody>
 </table>
 

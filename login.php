@@ -57,26 +57,24 @@ if( isset($_POST['btn-signin']) ) {
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<style>
-		#form {
-			display: flex;
-			flex-direction: column;
-			margin: 0 auto;
-			width: 35%;
-		}
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-		h1 {
-			text-align: center;
-		}
-	</style>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-<header id="header" class="">
-	
+	<div class="container-fluid">
+<header class="header" class="">
+	<h1>Login</h1>
 </header><!-- /header -->
 
-	<h1>Sign In</h1>
+	
 
 	<?php
 	if ( isset($errMSG) ) {
@@ -86,16 +84,19 @@ if( isset($_POST['btn-signin']) ) {
 	}
 	?>
 
-	<form id="form" method="POST">
-		<input type="text" name="name" value="" placeholder="Insert Username">
+	<form class="form" method="POST">
+		<input type="text" name="name" value="" placeholder="Insert Username"><br>
 		<span><?php echo $nameError; ?></span>
-		<input type="password" name="pass" placeholder="Insert Password">
+		<input type="password" name="pass" placeholder="Insert Password"><br>
 		<span><?php echo $passError; ?></span>
 		<button type="submit" class="btn btn-block btn-primary" name="btn-signin">Sign In</button>
 		<a href="registration.php">Sign Up Here...</a>
 	</form>
+	<footer class="footer">
+		
+	</footer>
 
-
+</div>
 </body>
 </html>
 <?php ob_end_flush(); ?>

@@ -2,8 +2,16 @@ table img {
 	width: 50%;
 }
 
-#header {
+.header {
 	background-color: #a8b6bf;
+}
+
+.footer {
+	background-color: #a8b6bf;
+	/* height: 150px; */
+	/* position: absolute; */
+	/* bottom: 0px; */
+	/* width:  100%; */
 }
 
 #ulflex {
@@ -14,3 +22,14 @@ table img {
 	padding: 10px;
 	list-style-type: none;
 }
+
+	.form{
+			display: flex;
+			flex-direction: column;
+			margin: 0 auto;
+			width: 35%;
+		}
+
+		h1 {
+			text-align: center;
+		}
