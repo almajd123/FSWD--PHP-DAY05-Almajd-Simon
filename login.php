@@ -38,7 +38,7 @@ if( isset($_POST['btn-signin']) ) {
 
   $password = hash('sha256', $pass); // password hashing
 
-  $res=mysqli_query($conn, "SELECT user_ID, email, userPassword FROM User WHERE userName='$name'");
+  $res=mysqli_query($conn, "SELECT user_ID, email, userPassword FROM user WHERE userName='$name'");
   $row=mysqli_fetch_array($res, MYSQLI_ASSOC);
   $count = mysqli_num_rows($res); // if uname/pass is correct it returns must be 1 row
   
@@ -72,6 +72,9 @@ if( isset($_POST['btn-signin']) ) {
 	</style>
 </head>
 <body>
+<header id="header" class="">
+	
+</header><!-- /header -->
 
 	<h1>Sign In</h1>
 
@@ -89,7 +92,7 @@ if( isset($_POST['btn-signin']) ) {
 		<input type="password" name="pass" placeholder="Insert Password">
 		<span><?php echo $passError; ?></span>
 		<button type="submit" class="btn btn-block btn-primary" name="btn-signin">Sign In</button>
-		<a href="register.php">Sign Up Here...</a>
+		<a href="registration.php">Sign Up Here...</a>
 	</form>
 
 

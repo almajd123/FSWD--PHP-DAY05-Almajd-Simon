@@ -1,13 +1,13 @@
 <?php
 ob_start();
 session_start(); // start a new session or continues the previous
-if( isset($_SESSION['User'])!="" ){
+if( isset($_SESSION['user'])!="" ){
  header("Location: login.php"); // redirects to home.php
 }
 include_once 'db_connect.php';
-$error = false;
 if ( isset($_POST['btn-signup']) ) {
- 
+ $error = false;
+
  // sanitize user input to prevent sql injection
  $name = trim($_POST['name']);
 
@@ -68,7 +68,7 @@ $password = hash('sha256', $pass);
  // if there's no error, continue to signup
  if( !$error ) {
   
-  $query = "INSERT INTO User (user_ID, userName, email, userPassword) VALUES (NULL, '$name','$email','$password')";
+  $query = "INSERT INTO user (userName, email, userPassword) VALUES ('$name','$email','$password')";
   $res = mysqli_query($conn, $query);
   
   if ($res) {
@@ -120,7 +120,7 @@ $password = hash('sha256', $pass);
 <?php
   }
   ?>
-<form id="form" method="POST" accept-charset="utf-8">
+<form id="form" method="POST" accept-charset="utf-8" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
   <input type="text" id="username" name="name" placeholder="Insert Username" value="">
   <span class="text-danger"><?php echo $nameError; ?></span>
   <input type="email" id="email" name="email" placeholder="Insert E-Mail">
