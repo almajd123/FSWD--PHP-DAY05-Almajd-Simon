@@ -1,4 +1,4 @@
-<!-- // DB Connection -->
+
 <?php 
 ob_start();
 session_start();
@@ -15,42 +15,8 @@ session_start();
        } else {
                 // echo "Works!";
        }
-// Query SELECT Media_ID, Name, ISBN, Image, Descr, Publish_Date FROM media
 
-// Delete Function
-   
-
-
-/*
-    if(isset($_GET['id'])) {
-     $id = $_GET['id'];
-     $sql = "SELECT * FROM media WHERE Media_ID = $id";
-     $result = mysqli_query($conn, $sql);
-
-     $row = mysqli_fetch_assoc($result);
-     // echo "bookname :" . $row["bookname"];
-   };
-*/
-   // $connect->close();
-
-
-/*
-   if (isset($_POST["submit3"])){
-    $id= $_POST["id"];
-    $name = mysqli_real_escape_string($conn, $_POST['newname']);
-    $sql = "UPDATE `media` SET bookname = '$bookname' WHERE Media_ID = $id"; 
-    if (mysqli_query($conn, $sql)) {
-     echo "<h1>record updated.<h1>";
-   } else {
-     echo "<h1>Update error for: </h1>" . 
-     "<p>" . $sql . "</p>" . mysqli_error($conn);
-   } 
- };
-//Edit End
-*/
-   // $connect->close();
-
-//Logged In
+// Logged In
  if( !isset($_SESSION['user']) ) {
  header("Location: admin_panel.php");
  exit;
@@ -178,19 +144,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
       <tbody>
 
        <?php
-       // Connection Data
-       $servername = "localhost";
-       $username   = "root";
-       $password   = "moony#1423"; 
-       $dbname     = "admin_panel_exercise";
-// Create connection
-       $conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check connection
-       if (!$conn) {
-         die("Connection failed: " . mysqli_connect_error() . "\n");
-       } else {
-                // echo "Works!";
-       }
+
 // Query SELECT Media_ID, Name, ISBN, Image, Descr, Publish_Date FROM media
 
        $sql = "SELECT items.item_ID, items.itemName, items.itemDate, status.statusName, type.typeName, items.itemImage
@@ -271,14 +225,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 */
    // $connect->close();
 
-//Logged In
- if( !isset($_SESSION['user']) ) {
- header("Location: admin_panel.php");
- exit;
-}
-// select logged-in users details
-$res=mysqli_query($conn, "SELECT * FROM user WHERE user_ID=".$_SESSION['user']);
-$userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
+
 ?>
 
 
