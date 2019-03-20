@@ -5,8 +5,8 @@ error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 
 define('DBHOST', 'localhost');
 define('DBUSER', 'root');
-define('DBPASS', 'moony#1423');
-define('DBNAME', 'admin_panel_exercise');
+define('DBPASS', '');
+define('DBNAME', 'crud_exercise');
 
 $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
 
@@ -14,7 +14,7 @@ $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
 if ( !$conn ) {
  die("Connection failed : " . mysqli_error());
 } else {
-	//echo "Works!";
+	echo "Works!";
 }
 
 
