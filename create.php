@@ -61,6 +61,7 @@
       </div>
     </div>
     <button type="submit">Insert Item</button>
+</form>
     <a href="index.php"><button type="button">Back</button>
     </body>
     </html>

@@ -5,8 +5,8 @@ error_reporting( ~E_DEPRECATED & ~E_NOTICE );
 
 define('DBHOST', 'localhost');
 define('DBUSER', 'root');
-define('DBPASS', '');
-define('DBNAME', 'crud_exercise');
+define('DBPASS', 'moony#1423');
+define('DBNAME', 'admin_panel_exercise');
 
 $conn = mysqli_connect(DBHOST,DBUSER,DBPASS,DBNAME);
 

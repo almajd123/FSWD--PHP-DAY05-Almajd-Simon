@@ -48,31 +48,10 @@
     <td><img class='images' src=".$val["itemImage"]."></td>
     <td>".$val["typeName"]."</td>
     <td>".$val["statusName"]."</td>
-    <td><a class='btn btn-danger' href='admin_panel.php?id=".$val["item_ID"]."'>Edit</a></td>
-    <td><a class='btn btn-danger' href='admin_panel.php?id=".$val["item_ID"]."'>Delete</a></td>
+    <td><a class='btn btn-danger' href='update.php?id=".$val["item_ID"]."'>Edit</a></td>
+    <td><a class='btn btn-danger' href='delete.php?id=".$val["item_ID"]."'>Delete</a></td>
     </tr>";
   }
-// Insert Record Media
-
-  if (isset($_POST["submit"])) {
-    $itemname = mysqli_real_escape_string($conn, $_POST['itemname']);
-    $itemdate = mysqli_real_escape_string($conn, $_POST['itemdate']);
-    $itemimage = mysqli_real_escape_string($conn, $_POST['itemimage']);
-    $itemtype = mysqli_real_escape_string($conn, $_POST['itemtype']);
-    $itemstatus = mysqli_real_escape_string($conn, $_POST['itemstatus']);
-
-    $sql = "INSERT INTO items (item_ID, itemName, itemDate, itemImage, itemType, itemStatus) 
-    VALUES (NULL,'$itemname', '$itemdate', '$itemimage', '$itemtype', '$itemstatus')";
-    if (mysqli_query($conn, $sql)) {
-     echo "<h1>New record created.</h1>";
-   } else {
-     echo "<h1>Record creation error for: </h1>" . 
-     "<p>" . $sql . "</p>" . 
-     mysqli_error($conn);
-   }
-   mysqli_close($conn);
- }
-
  ?>
 
 
