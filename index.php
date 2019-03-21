@@ -1,5 +1,16 @@
 
-<?php require_once 'actions/db_connect.php'; ?>
+<?php require_once 'actions/db_connect.php'; 
+// Logged In
+session_start();
+if(isset($_SESSION["admin"]) == ""){
+	header("Location: login.php");
+	exit;
+}
+
+
+$res = mysqli_query($conn, "SELECT * FROM user WHERE user_ID =".$_SESSION['admin']);
+$userRow = mysqli_fetch_array($res, MYSQLI_ASSOC);
+?>
 
 <!DOCTYPE html>
 <html>
@@ -8,6 +19,17 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
+
+	<header class="header" class=""> 
+      <h1>Admin Panel</h1>
+      <nav>
+        <ul id="ulflex">
+          <li>Your logged in as: <?php echo $userRow['userName']; ?></li>
+          <li><a href="logout.php?logout">Sign Out</a></li>
+        </ul>
+      </nav>
+    </header><!-- /header -->
+
   <div class="manageData col-lg-9">
  <a href="create.php"><button type="button">Add Item</button></a>
  <table class="table">

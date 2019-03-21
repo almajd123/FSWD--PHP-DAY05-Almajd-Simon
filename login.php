@@ -1,14 +1,18 @@
 <?php
 ob_start();
 session_start();
-require_once 'db_connect.php';
+require_once 'actions/db_connect.php';
 
 // it will never let you open index(login) page if session is set
 if ( isset($_SESSION['user'])!="" ) {
-	header("Location: admin_panel.php");
+	header("Location: home.php");
 	exit;
 }
 
+if ( isset($_SESSION['admin'])!="" ) {
+	header("Location: index.php");
+	exit;
+}
 $error = false;
 
 if( isset($_POST['btn-signin']) ) {
@@ -38,13 +42,21 @@ if( isset($_POST['btn-signin']) ) {
 
   $password = hash('sha256', $pass); // password hashing
 
-  $res=mysqli_query($conn, "SELECT user_ID, email, userPassword FROM user WHERE userName='$name'");
-  $row=mysqli_fetch_array($res, MYSQLI_ASSOC);
+  $res=mysqli_query($conn, "SELECT user_ID, email, userPassword,rules FROM user WHERE userName='$name'");
+  $row = $res->fetch_assoc();
   $count = mysqli_num_rows($res); // if uname/pass is correct it returns must be 1 row
   
   if( $count == 1 && $row['userPassword']==$password ) {
-  	$_SESSION['user'] = $row['user_ID'];
-  	header("Location: admin_panel.php");
+  	// admin login
+  	if($row["rules"] == "admin"){
+  		$_SESSION['admin'] = $row['user_ID'];
+  		header("Location : index.php");
+  	} else {
+  		// user login
+  		$_SESSION['user'] = $row['user_ID'];
+  		header("Location: home.php");
+  	}
+  	
   } else {
   	$errMSG = "Incorrect Credentials, Try again...";
   }
